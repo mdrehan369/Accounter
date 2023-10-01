@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include ("partials/header") %>
+    <h3><%= msg %></h3>
+    <form action="/signup", method="post">
+        <input type="text" name="Name" placeholder="Name">
+        <input type="email" name="Email" placeholder="Email">
+        <input type="number" name="Number" placeholder="Number">
+        <input type="password" name="Password" placeholder="Password">
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
