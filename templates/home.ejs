@@ -8,5 +8,30 @@
 <body>
     <%- include ("partials/header") %>
     <h1>hello</h1>
+    <h2><%= msg %></h2>
+    <div class="container">
+        <% if(entries != null) { %>
+            <h2>Current Balance: <%= currentBal %></h2>
+            <% for(let entry of entries) { %>
+                <div class="entry">
+                    <%= entry['amount'] %>
+                    <%= entry['gained'] %>
+                    <%= entry['message'] %>
+                    <%= entry['date'] %>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+    <% if(user != null) { %>
+        <form action="/" method="post">
+            <input type="number" name="Amount" placeholder="Amount">
+            <input type="radio" name="Gained" value = 1 id="gain">
+            <label for="gain">Gained</label>
+            <input type="radio" name="Gained" value = 0 id="lost">
+            <label for="lost">Lost</label>
+            <input type="text" name="Message" placeholder="Message">
+            <input type="submit" value="submit">
+        </form>
+    <% } %>
 </body>
 </html>
