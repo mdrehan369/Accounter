@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
     <%- include ("partials/header") %>
-    <h1>hello</h1>
-    <h2><%= msg %></h2>
+    <% if(msg != ""){ %>
+    <div id="msg">
+        <img src="images/login.png" alt="">
+        <div>
+        <h1>Hello!</h1>
+        <h2><%= msg %></h2>
+        </div>
+    </div>
+    <% }else{ %>
     <div class="container">
         <% if(entries != null) { %>
             <h2>Current Balance: <%= currentBal %></h2>
@@ -32,6 +40,7 @@
             <input type="text" name="Message" placeholder="Message">
             <input type="submit" value="submit">
         </form>
+    <% } %>
     <% } %>
 </body>
 </html>

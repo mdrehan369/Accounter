@@ -32,4 +32,16 @@ router.get("/profile", (req, res) => {
 
 router.post("/", homeControllerPost);
 
+router.get("/about", (req, res) => {
+    res.render("about", {user: session.user});
+});
+
+router.get("/contact", (req, res) => {
+    res.render("contact", {user: session.user});
+});
+
+router.get("/statistics", (req, res) => {
+    res.render("statistics", {user: session.user});
+});
+
 export default router;

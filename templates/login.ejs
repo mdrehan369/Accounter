@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
-    <%- include("partials/header") %>
-    <h3><%= msg %></h3>
-    <form action="/login" method="post">
-        <input type="text" placeholder="Email" name="Account">
-        <input type="password" placeholder="Password" name="Password">
-        <a href="/signup">Signup</a>
-        <input type="submit" value="submit">
-    </form>
-</body>
+<%- include("partials/header") %>
+
+    <body>
+        <div id="container">
+            <% if(msg != ""){ %>
+            <h3>
+                <%= msg %>
+            </h3>
+            <% } %>
+            <div id="box">
+                <h1>Accounter</h1>
+                <form action="/login" method="post">
+                    <input type="text" placeholder="Email" name="Account">
+                    <input type="password" placeholder="Password" name="Password">
+                    <a href="/signup">Signup</a>
+                    <input type="submit" value="Login" id="btn">
+                </form>
+            </div>
+        </div>
+    </body>
+
 </html>
