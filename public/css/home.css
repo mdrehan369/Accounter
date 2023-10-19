@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    /* background-color: red; */
+    width: 100vw;
+    height: 100vh;
+}
+
+#msg{
+    width: 100vw;
+    height: 92vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#msg img{
+    width: 20%;
+    height: auto;
+}
+
