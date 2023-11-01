@@ -9,38 +9,47 @@
 <body>
     <%- include ("partials/header") %>
     <% if(msg != ""){ %>
-    <div id="msg">
-        <img src="images/login.png" alt="">
-        <div>
-        <h1>Hello!</h1>
-        <h2><%= msg %></h2>
+        <div id="msg">
+            <img src="images/login.png" alt="">
+            <div>
+            <h1>Hello!</h1>
+            <h2><%= msg %></h2>
+            </div>
         </div>
-    </div>
     <% }else{ %>
-    <div class="container">
-        <% if(entries != null) { %>
-            <h2>Current Balance: <%= currentBal %></h2>
-            <% for(let entry of entries) { %>
-                <div class="entry">
-                    <%= entry['amount'] %>
-                    <%= entry['gained'] %>
-                    <%= entry['message'] %>
-                    <%= entry['date'] %>
-                </div>
+        <div class="main">
+            <% if(user != null) { %>
+                <form action="/" method="post">
+                    <input type="number" name="Amount" placeholder="Amount" id="amt">
+                    <input type="radio" name="Gained" value = 1 id="gain">
+                    <label for="gain">Credit</label>
+                    <input type="radio" name="Gained" value = 0 id="lost">
+                    <label for="lost">Debit</label>
+                    <input type="text" name="Message" placeholder="Message" id="message">
+                    <input type="submit" value="Add Entry" id="btn">
+                </form>
             <% } %>
-        <% } %>
-    </div>
-    <% if(user != null) { %>
-        <form action="/" method="post">
-            <input type="number" name="Amount" placeholder="Amount">
-            <input type="radio" name="Gained" value = 1 id="gain">
-            <label for="gain">Gained</label>
-            <input type="radio" name="Gained" value = 0 id="lost">
-            <label for="lost">Lost</label>
-            <input type="text" name="Message" placeholder="Message">
-            <input type="submit" value="submit">
-        </form>
-    <% } %>
+            <% if(entries != null){ %>
+                <h2 id="bal">Current Balance: <%= currentBal %></h2>
+            <% } %>
+            <div class="container">
+                <% if(entries != null) { %>
+                    <!-- <div class="table"> -->
+                    <% for(let entry of entries) { %>
+                        <div class="entry">
+                            <span><%= entry['amount'] %></span>
+                            <span><%= entry['gained']?"Credit":"Debit" %></span>
+                            <span><%= entry['message'] %></span>
+                            <span><%= entry['date'] %></span>
+                        </div>
+                    <% } %>
+                    <!-- </div> -->
+                <% }else{ %>
+                    <h1>No Entries!</h1>
+                <% } %>
+                    <!-- </div> -->
+            </div>
+        </div>
     <% } %>
 </body>
 </html>

@@ -10,7 +10,7 @@ const homeControllerGet = async (req, res) => {
     let p = await accountModel.findOne({ number: session.user['number'] });
 
     if (p == null) {
-        res.render("home", { msg: "No Entries", user: session.user, entries: null, currentBal: 0 });
+        res.render("home", { msg: "", user: session.user, entries: null, currentBal: 0 });
     } else {
         res.render("home", { msg: "", user: session.user, entries: p['entries'], currentBal: p['currentBal'] });
     }
@@ -22,12 +22,15 @@ const homeControllerPost = async (req, res) => {
     const { Amount, Gained, Message } = req.body;
     let p = await accountModel.findOne({ number: session.user['number'] });
 
+    let d = new Date();
+    let dateString = d.toDateString();
+
     if(p == null){
         try{
             const acc = new accountModel({
                 number: session.user['number'],
                 currentBal: Amount,
-                entries: [{amount: Amount, gained: Gained, message: Message}]
+                entries: [{amount: Amount, gained: Gained, message: Message, date: dateString}],
             })
             await acc.save();
             console.log("new entry created");
@@ -40,14 +43,15 @@ const homeControllerPost = async (req, res) => {
         prev_entries.push({
             amount: Amount,
             gained: Gained,
-            message: Message
+            message: Message,
+            date: dateString
         });
 
         let prev_bal = parseInt(p['currentBal']);
         if(Gained == 1){
-            prev_bal = prev_bal + Amount;
+            prev_bal = prev_bal + parseInt(Amount);
         }else{
-            prev_bal = prev_bal - Amount;
+            prev_bal = prev_bal - parseInt(Amount);
         }
 
         try{
